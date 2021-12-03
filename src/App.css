@@ -18,3 +18,23 @@
   background-color: white;
   box-shadow: 0 0 10px greenyellow;
 }
+
+.transaction-form input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 5px 0;
+}
+
+.transaction-list {
+  margin: 0;
+  padding: 0;
+}
+
+.transaction-list > li {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0px 2px 5px gray;
+  padding: 10px 10px;
+  margin: 15px 0;
+}
