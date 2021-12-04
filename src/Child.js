@@ -8,10 +8,16 @@ function Child() {
 
   const handleAddition = event => {
     event.preventDefault();
+    if (Number(newAmount) === 0) {
+      alert('Please enter correct value');
+      return false;
+    }
     addTransaction({
-      amount: newAmount,
+      amount: Number(newAmount),
       desc: newDesc,
     });
+    setDesc('');
+    setAmount(0);
   };
 
   const getIncome = () => {
@@ -25,7 +31,7 @@ function Child() {
   const getExpense = () => {
     let expense = 0;
     for (var i = 0; i < transactions.length; i++) {
-      if (transactions[i].amount > 0)
+      if (transactions[i].amount < 0)
         expense = expense + transactions[i].amount;
     }
     return expense;
@@ -35,15 +41,15 @@ function Child() {
     <div className="container">
       <h1 className="text-center">Expense Tracer</h1>
       <h3>
-        Your Balance <br /> $260
+        Your Balance <br /> ${getIncome() + getExpense()}
       </h3>
 
       <div className="expense-container">
         <h3>
-          INCOME <br /> $500
+          INCOME <br /> ${getIncome()}
         </h3>
         <h3>
-          EXPENSE <br /> $240
+          EXPENSE <br /> ${getExpense()}
         </h3>
       </div>
       <h3>History</h3>
@@ -54,7 +60,7 @@ function Child() {
           return (
             <li key={ind}>
               <span>{transObj.desc}</span>
-              <span>{transObj.amount}</span>
+              <span>${transObj.amount}</span>
             </li>
           );
         })}
@@ -68,6 +74,8 @@ function Child() {
           Enter Description <br />
           <input
             type="text"
+            value={newDesc}
+            placeholder="Description"
             onChange={ev => setDesc(ev.target.value)}
             required
           />
@@ -77,6 +85,8 @@ function Child() {
           Enter Amount <br />
           <input
             type="number"
+            value={newAmount}
+            placeholder="Amount"
             onChange={ev => setAmount(ev.target.value)}
             required
           />

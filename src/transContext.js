@@ -5,6 +5,7 @@ const initialTransactions = [
   { amount: 500, desc: 'Cash' },
   { amount: -50, desc: 'Cold Drink' },
   { amount: 100, desc: 'Deposit' },
+  { amount: -200, desc: 'Utility Bill' },
 ];
 
 export const TransactionContext = createContext(initialTransactions);
